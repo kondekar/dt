@@ -160,12 +160,24 @@ app.get('/dynamic', async (req, res) => {
 
     const user_accounts_string = await user_accounts_info.text()
     const accounts_data = JSON.parse(user_accounts_string)
-
+/*
     res.render('pages/dynamic', {
         given_name: id_token.given_name,
         accounts_count: accounts_data.accounts.length
     })
-})
+        */
+    return res.send(`<body style='margin:0px'>
+        <script type="module">
+            import {enableRouter} from "/public/banno-plugin-framework-bridge.js";
+            enableRouter();
+        </script>
+    <div id='container1' style='margin:50px;'>
+        <a target="_top" href="https://example.com"><h1>Click here<h1></a>
+    </div>
+        <iframe src="public/frame.html"> </iframe>
+</body>`);
+        
+});
 
 app.listen(config.app_port, () => {
     console.log(`App running at http://localhost:${config.app_port}`)
